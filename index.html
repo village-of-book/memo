@@ -102,7 +102,7 @@
     
     //削除する処理
     $('#clear').on('click',function(){
-      localStorage.removeItem('memo');
+      localStorage.removeItem($('#input').val());
       $('#input').val('')
       $('#text_area_failure').val('')
       $('#text_area_success').val('')
