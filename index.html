@@ -48,8 +48,9 @@
     </ul>
     
     <ul>
-      <li id="save">Save</li>
-      <li id="clear">Clear</li>
+      <li id="save">保存</li>
+      <li id="load">表示</li>
+      <li id="clear">削除</li>
     </ul>
 
     <div id="history">
@@ -101,15 +102,16 @@
     
     //削除する処理
     $('#clear').on('click',function(){
-      localStorage.removeItem('memo');
+      localStorage.removeItem($('#input').val());
       $('#input').val('')
       $('#text_area_failure').val('')
       $('#text_area_success').val('')
     });
 
     //保存された値を取り出す処理
-    if (localStorage.getItem('memo')){
-      const json = localStorage.getItem('memo');
+    $('#load').on('click',function(){
+      if (localStorage.getItem($('#input').val())){
+      const json = localStorage.getItem($('#input').val());
       console.log(json)
       const data = JSON.parse(json);
       console.log(data);
@@ -117,6 +119,7 @@
       $('#text_area_failure').val(data.text_failure);
       $('#text_area_success').val(data.text_success);
     }
+    })
 
     const history = [];
 
