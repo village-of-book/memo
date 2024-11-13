@@ -58,12 +58,12 @@
     </div>
 
   </main>
-
-  <!-- <footer>
-    <small>※失敗は成功のもと</small>
-  </footer> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
+  //メッセージ
+  alert(
+    "失敗は成功のもと"
+    )
   //現在時刻取得
   const date = new Date();
   const year = date.getFullYear();
@@ -124,8 +124,9 @@
     const history = [];
 
     $('#save').on('click', function () {
-      // const omikuji = ['大吉', '中吉', '小吉', '凶', '大凶'];
-      // const random = Math.floor(Math.random() * omikuji.length);
+      const omikuji = ['失敗は成功のもと。どんどん失敗しましょう！', '興味深い失敗ですね', 'また一つ学びを得ましたね', '一歩、成功に近づきました', '後の笑い話にしてやりましょう！'];
+      const random = Math.floor(Math.random() * omikuji.length);
+      alert(omikuji[random])
       const result = time + " " +$('#input').val();
       $('#echo').text(result);
 
