@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おみくじ</title>
+  <link rel="stylesheet" href="./css/sample.css">
+</head>
+
+<body>
+  <header>
+    <h1>おみくじ</h1>
+  </header>
+
+  <main>
+    <ul>
+      <li id="pull">おみくじを引く</li>
+    </ul>
+    <p id="echo">結果は？</p>
+    <div id="history">
+      <p>履歴が表示されます</p>
+    </div>
+  </main>
+
+  <footer>フッター</footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    const history = [];
+
+    $('#pull').on('click', function () {
+      const omikuji = ['大吉', '中吉', '小吉', '凶', '大凶'];
+      const random = Math.floor(Math.random() * omikuji.length);
+      const result = omikuji[random];
+      $('#echo').text(result);
+
+      //2
+      history.unshift(result);
+      console.log(history);
+
+      const historyHtml = [];
+      for (let i = 0; i < history.length; i++) {
+        historyHtml.push('<p>' + history[i] + '</p>');
+      }
+      console.log(historyHtml)
+      $('#history').html(historyHtml)
+    });
+
+  </script>
+
+</body>
+
+</html>

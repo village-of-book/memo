@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>失敗アプリ</title>
+  <link rel="stylesheet" href="css/sample.css">
+</head>
+
+<body>
+  <header>
+    <h1>失敗アプリ</h1>
+    <h3>※失敗は成功のもと</h3>
+  </header>
+
+  <main>
+
+    <ul>
+      <li>
+        <div>
+          <p>タイトル</p>
+          <input type="text" id="input">  
+        </div>  
+      </li>
+
+      <li>
+        <div>
+          <p>ナンバリング</p>
+          <input type="text" id="numbering">  
+        </div>  
+      </li>
+  
+  
+    </ul>
+
+
+    <ul>
+      <li>
+        <p>✖︎失敗✖︎</p>
+        <textarea id="text_area_failure">失敗内容を記録</textarea>
+      </li>
+      <li>
+        <p>⚪︎成功⚪︎</p>
+        <textarea id="text_area_success">成功内容を記載</textarea>
+      </li>
+    </ul>
+    
+    <ul>
+      <li id="save">Save</li>
+      <li id="clear">Clear</li>
+    </ul>
+
+    <div id="history">
+      <p>履歴が表示されます</p>
+    </div>
+
+  </main>
+
+  <!-- <footer>
+    <small>※失敗は成功のもと</small>
+  </footer> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  //現在時刻取得
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const milliseconds = date.getMilliseconds();
+  const time = `${year}/${month}/${day} ${hour}:${minutes}:${seconds}`;
+  $('#numbering').text(time);
+  console.log(time); // (例) 2019-10-27 18:00:00
+
+  // const memo = $('#input').val()
+
+
+
+    //保存する処理
+    $('#save').on('click',function(){
+    //オブジェクトにまとめる
+    const data = {
+      time,
+      title: $('#input').val(),
+      text_failure: $('#text_area_failure').val(),
+      text_success: $('#text_area_success').val(),
+    };
+    console.log(data)
+    //JSON形式のデータに保存する
+    const json = JSON.stringify(data);
+    console.log(json)
+    //JSON形式のデータを保存する
+    // localStorage.setItem('memo',json);
+    localStorage.setItem($('#input').val(),json);
+
+    });
+    
+    //削除する処理
+    $('#clear').on('click',function(){
+      localStorage.removeItem('memo');
+      $('#input').val('')
+      $('#text_area_failure').val('')
+      $('#text_area_success').val('')
+    });
+
+    //保存された値を取り出す処理
+    if (localStorage.getItem('memo')){
+      const json = localStorage.getItem('memo');
+      console.log(json)
+      const data = JSON.parse(json);
+      console.log(data);
+      $('#input').val(data.title);
+      $('#text_area_failure').val(data.text_failure);
+      $('#text_area_success').val(data.text_success);
+    }
+
+    const history = [];
+
+    $('#save').on('click', function () {
+      // const omikuji = ['大吉', '中吉', '小吉', '凶', '大凶'];
+      // const random = Math.floor(Math.random() * omikuji.length);
+      const result = time + " " +$('#input').val();
+      $('#echo').text(result);
+
+      //2
+      history.unshift(result);
+      console.log(history);
+
+      const historyHtml = [];
+      for (let i = 0; i < history.length; i++) {
+        historyHtml.push('<p>' + history[i] + '</p>');
+      }
+      console.log(historyHtml)
+      $('#history').html(historyHtml)
+    });  
+
+  </script>
+
+</body>
+
+</html>
