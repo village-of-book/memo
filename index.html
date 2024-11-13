@@ -21,14 +21,14 @@
       <li>
         <div>
           <p>タイトル</p>
-          <input type="text" id="input">  
+          <input type="text" id="input"  placeholder="失敗のタイトルは何ですか？">  
         </div>  
       </li>
 
       <li>
         <div>
           <p>ナンバリング</p>
-          <input type="text" id="numbering">  
+          <input type="text" id="numbering"   placeholder="準備中、リリース前">  
         </div>  
       </li>
   
@@ -39,11 +39,11 @@
     <ul>
       <li>
         <p>✖︎失敗✖︎</p>
-        <textarea id="text_area_failure">失敗内容を記録</textarea>
+        <textarea id="text_area_failure"  placeholder="失敗内容を記録"></textarea>
       </li>
       <li>
         <p>⚪︎成功⚪︎</p>
-        <textarea id="text_area_success">成功内容を記載</textarea>
+        <textarea id="text_area_success"  placeholder="成功した場合の内容を記録"></textarea>
       </li>
     </ul>
     
@@ -60,10 +60,7 @@
   </main>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-  //メッセージ
-  alert(
-    "失敗は成功のもと"
-    )
+
   //現在時刻取得
   const date = new Date();
   const year = date.getFullYear();
