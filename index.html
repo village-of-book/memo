@@ -109,8 +109,9 @@
     });
 
     //保存された値を取り出す処理
-    if (localStorage.getItem('memo')){
-      const json = localStorage.getItem('memo');
+    $('#load').on('click',function(){
+      if (localStorage.getItem($('#input').val())){
+      const json = localStorage.getItem($('#input').val());
       console.log(json)
       const data = JSON.parse(json);
       console.log(data);
@@ -118,6 +119,7 @@
       $('#text_area_failure').val(data.text_failure);
       $('#text_area_success').val(data.text_success);
     }
+    })
 
     const history = [];
 
